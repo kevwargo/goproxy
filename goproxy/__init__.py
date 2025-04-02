@@ -30,7 +30,7 @@ class Renamer:
         self.args = parser.parse_args()
 
     def rename_all(self):
-        for path in self.args.paths:
+        for path in (p.resolve() for p in self.args.paths):
             if path.is_dir():
                 for origin in path.iterdir():
                     self.rename_lrv(origin)
